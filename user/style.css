@@ -1,0 +1,309 @@
+:root {
+    --primary: #FF7EB9;
+    --secondary: #7AFcFF;
+    --accent: #FEFF9C;
+    --bg: #1A1A2E;
+    --card-bg: rgba(30, 30, 50, 0.7);
+    --text: #E2F3F5;
+    --text-light: #B8D8D8;
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    width: 100%;
+    min-height: 100vh;
+    text-align: center;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+.bg-blob {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.4;
+    z-index: -1;
+    animation: float 15s infinite ease-in-out;
+}
+
+.blob-1 {
+    background: var(--primary);
+    top: -100px;
+    left: -100px;
+}
+
+.blob-2 {
+    background: var(--secondary);
+    bottom: -100px;
+    right: -100px;
+    animation-delay: 2.5s;
+}
+
+.blob-3 {
+    background: var(--accent);
+    top: 50%;
+    right: 10%;
+    width: 300px;
+    height: 300px;
+    animation-delay: 5s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(20px, 20px);
+    }
+
+    50% {
+        transform: translate(-20px, 20px);
+    }
+
+    75% {
+        transform: translate(-20px, -20px);
+    }
+}
+
+h1 {
+    margin-bottom: 1em;
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.container {
+    display: flex;
+    margin: 1em 0;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5em;
+}
+
+.user-card {
+    width: 350px;
+    min-height: 200px;
+    padding: 25px;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 126, 185, 0.3);
+}
+
+.user-name {
+    font-size: 1.5rem;
+    margin-bottom: 0.3em;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.username {
+    font-style: italic;
+    color: var(--accent);
+    margin-bottom: 1em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+}
+
+.contact-info {
+    margin: 0.8em 0;
+}
+
+.contact-info p {
+    margin: 0.5em 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.contact-info i {
+    width: 20px;
+    color: var(--secondary);
+    font-size: 0.9rem;
+}
+
+.company {
+    font-weight: bold;
+    margin: 0.8em 0;
+    padding-top: 0.8em;
+    border-top: 1px dashed rgba(255, 255, 255, 0.2);
+    color: var(--secondary);
+}
+
+.map-container {
+    height: 200px;
+    width: 100%;
+    margin: 15px 0 5px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.map-container::before {
+    content: 'Map Preview';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .user-card {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+.address-fields, .company-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.address-fields input, .company-fields input {
+    flex: 1;
+    min-width: 120px;
+}
+
+.user-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.user-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: var(--accent);
+    transform: translate(15px, -15px) rotate(45deg);
+    box-shadow: 0 0 20px rgba(254, 255, 156, 0.3);
+}
+
+.new-card {
+    animation: cardAppear 0.6s ease-out forwards;
+}
+
+@keyframes cardAppear {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.contact-form {
+    width: 100%;
+    max-width: 500px;
+    margin: 2em auto;
+    padding: 25px;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.contact-form h2 {
+    color: var(--secondary);
+    margin-bottom: 1em;
+    font-size: 1.5rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.contact-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.contact-form button {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: var(--bg);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+
